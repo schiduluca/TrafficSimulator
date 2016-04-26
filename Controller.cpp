@@ -16,6 +16,19 @@ Controller::Controller() {
     trafficLight = 1;
 }
 
+void Controller::increaseRandom() {
+    this->randomG++;
+    cout << randomG << " ";
+}
+
+void Controller::decreaseRandom() {
+    if(randomG > 50){
+        this->randomG--;
+        cout << randomG << " ";
+
+    }
+}
+
 void Controller::initTrafficLights() {
 
     trOne = new TrafficLight(280, 150, 40, false);
@@ -31,7 +44,7 @@ void Controller::generateCar() {
 
     switch (vector){
         case 0:
-            vector = rand() % 100;
+            vector = rand() % randomG;
             if(vector == 0){
                 canGenerate = true;
                 for(int i = 0; i < vecOne.size(); i++){
@@ -48,7 +61,7 @@ void Controller::generateCar() {
 
             break;
         case 1:
-            vector = rand() % 100;
+            vector = rand() % randomG;
             if(vector == 0){
                 canGenerate = true;
                 for(int i = 0; i < vecTwo.size(); i++){
@@ -65,7 +78,7 @@ void Controller::generateCar() {
 
             break;
         case 2:
-            vector = rand() % 100;
+            vector = rand() % randomG;
             if(vector == 0){
                 canGenerate = true;
                 for(int i = 0; i < vecThree.size(); i++){
@@ -81,7 +94,7 @@ void Controller::generateCar() {
 
             break;
         case 3:
-            vector = rand() % 100;
+            vector = rand() % randomG;
             if(vector == 0){
                 canGenerate = true;
 

@@ -5,7 +5,6 @@
 #include <windowsx.h>
 #include <wingdi.h>
 #include <vector>
-#include "Object.h"
 #include "Car.h"
 #include "Controller.h"
 
@@ -202,10 +201,9 @@ LRESULT CALLBACK WinProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
             int zDelta = (short) HIWORD(wParam);
 
             if(zDelta > 0) {
-                speed += 1;
+                controller->increaseRandom();
             }else {
-                if(speed > 0)
-                    speed -= 1;
+                controller->decreaseRandom();
             }
             break;
         }

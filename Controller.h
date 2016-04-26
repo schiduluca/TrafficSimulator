@@ -24,6 +24,7 @@ class Controller {
     TrafficLight *trTwo;
     TrafficLight *trThree;
     TrafficLight *trFour;
+    int randomG = 100;
 
 public:
     void initCars();
@@ -35,6 +36,8 @@ public:
     void moveCars();
     void drawTrafficLights(HDC hdcMem);
     bool canCarMove(int index, vector<Car> cars, int direction );
+    void increaseRandom();
+    void decreaseRandom();
 };
 
 
