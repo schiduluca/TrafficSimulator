@@ -22,7 +22,6 @@ void Controller::initTrafficLights() {
     trTwo = new TrafficLight(480, 150, 40, true);
     trThree = new TrafficLight(280, 400, 40, true);
     trFour = new TrafficLight(480, 400, 40, false);
-
 }
 
 void Controller::generateCar() {
