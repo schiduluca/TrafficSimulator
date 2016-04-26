@@ -16,7 +16,6 @@ using namespace std;
 #define TIMER_ID 1
 
 static PAINTSTRUCT ps;
-const int BALL_MOVE_DELTA = 2;
 static HDC hdc;
 static RECT rect;
 RECT rc;
@@ -25,7 +24,6 @@ HBITMAP hbmMem, hbmOld;
 HBRUSH hbrBkGnd;
 HFONT hfntOld;
 
-int speed = 0;
 
 int x, y;
 
