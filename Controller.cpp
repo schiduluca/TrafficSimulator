@@ -136,6 +136,16 @@ void Controller::drawCars(HDC hdcMem) {
 }
 
 
+void Controller::drawPedestrians(HDC hdcMem) {
+    for(int i = 0; i < pedOne.size(); i++) {
+        pedOne[i].drawPedestrian(hdcMem);
+    }
+
+    for(int i = 0; i < pedTwo.size(); i++) {
+        pedTwo[i].drawPedestrian(hdcMem);
+    }
+}
+
 void Controller::drawTrafficLights(HDC hdcMem) {
     trOne->draw(hdcMem);
     trTwo->draw(hdcMem);
@@ -208,6 +218,45 @@ void Controller::moveCars() {
  }
 
 
+void Controller::generatePedestrian() {
+
+    int vector = rand() % 2;
+    int canGenerate;
+
+    switch (vector) {
+        case 0:
+            vector = rand() % randomG;
+            if (vector == 0) {
+                canGenerate = true;
+                for (int i = 0; i < pedOne.size(); i++) {
+                    if (pedOne[i].getX() < 0)
+                        canGenerate = false;
+                }
+
+                if (canGenerate) {
+                    pedestrian = new Pedestrian(-100, 385, 30, 30, 1);
+                    pedOne.push_back(*pedestrian);
+                }
+            }
+            break;
+        case 1:
+            vector = rand() % randomG;
+            if (vector == 0) {
+                canGenerate = true;
+                for (int i = 0; i < pedTwo.size(); i++) {
+                    if (pedTwo[i].getY() < 0)
+                        canGenerate = false;
+                }
+
+                if (canGenerate) {
+                    pedestrian = new Pedestrian(285, -100, 30, 30, 2);
+                    pedTwo.push_back(*pedestrian);
+                }
+            }
+            break;
+    }
+}
+
 void Controller::changeTraficLight() {
 
     trOne->changeColor();
@@ -222,6 +271,61 @@ void Controller::changeTraficLight() {
     }
 }
 
+
+void Controller::movePedestrians() {
+
+    for(int i = 0; i < pedOne.size(); i++) {
+
+        if(trafficLight == 1) {
+            if(pedOne[i].getX() <= 300 - 100 || pedOne[i].getX() > 320 ) {
+                if(canPedestrianMove(i, pedOne, 1))
+                    pedOne[i].setX(pedOne[i].getX() + 2);
+            }
+        }else{
+            pedOne[i].setX(pedOne[i].getX() + 2);
+        }
+    }
+
+    for(int i = 0; i < pedTwo.size(); i++) {
+        if(trafficLight == 0) {
+
+            if(pedTwo[i].getY() <= 150 - 50 || pedTwo[i].getY() > 170) {
+                if(canPedestrianMove(i, pedTwo, 2))
+                    pedTwo[i].setY(pedTwo[i].getY() + 2);
+            }
+        }else{
+            pedTwo[i].setY(pedTwo[i].getY() + 2);
+        }
+    }
+
+}
+
+
+bool Controller::canPedestrianMove(int index, vector<Pedestrian> ped, int direction) {
+
+    bool canMove = true;
+
+    for(int i = 0; i < index; i++) {
+
+        if(index != i) {
+            switch(direction) {
+                case 1:
+                    if(ped[index].getX() + ped[index].getWidth() + 10 >= ped[i].getX()) {
+                        canMove = false;
+                    }
+                    break;
+                case 2:
+                    if(ped[index].getY() + ped[index].getWidth() + 10 >= ped[i].getY()) {
+                        canMove = false;
+                    }
+                    break;
+            }
+        }
+    }
+
+    return canMove;
+
+}
 
 bool Controller::canCarMove(int index, vector<Car> cars, int direction) {
     bool canMove = true;

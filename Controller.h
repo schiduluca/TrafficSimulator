@@ -23,6 +23,7 @@ class Controller {
     vector<Pedestrian> pedOne;
     vector<Pedestrian> pedTwo;
     Car *car;
+    Pedestrian *pedestrian;
     TrafficLight *trOne;
     TrafficLight *trTwo;
     TrafficLight *trThree;
@@ -42,6 +43,10 @@ public:
     bool canCarMove(int index, vector<Car> cars, int direction );
     void increaseRandom();
     void decreaseRandom();
+    void generatePedestrian();
+    void movePedestrians();
+    void drawPedestrians(HDC hdcMem);
+    bool canPedestrianMove(int index, vector<Pedestrian> ped, int direction);
 };
 
 

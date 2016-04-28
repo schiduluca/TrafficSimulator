@@ -68,6 +68,7 @@ static void Paint(HWND hWnd, LPPAINTSTRUCT lpPS) {
     drawRoad(hdcMem);
     controller->drawCars(hdcMem);
     controller->drawTrafficLights(hdcMem);
+    controller->drawPedestrians(hdcMem);
 
     DeleteObject(hbrBkGnd);
     SetBkMode(hdcMem, TRANSPARENT);
@@ -156,6 +157,8 @@ LRESULT CALLBACK WinProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
         case WM_PAINT: {
             controller->generateCar();
             controller->moveCars();
+            controller->generatePedestrian();
+            controller->movePedestrians();
 
             hdc = BeginPaint(hWnd, &ps);
             Paint(hWnd, &ps);
