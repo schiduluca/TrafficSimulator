@@ -187,6 +187,7 @@ LRESULT CALLBACK WinProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 changeTrafficLight = 0;
                 controller->changeTraficLight();
             }
+            
             InvalidateRect(hWnd, &rect, FALSE);
         }
             break;
