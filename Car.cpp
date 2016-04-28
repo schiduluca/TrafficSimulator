@@ -4,15 +4,7 @@
 
 #include "Car.h"
 
-void Car::drawCar(HDC hdcMem) {
-    SelectObject(hdcMem, brush);
 
-    if(direction == 2 || direction == 4) {
-        Rectangle(hdcMem, x, y, x + height, y + width);
-    }else{
-        Rectangle(hdcMem, x, y, x + width, y + height);
-    }
-}
 
 
 void Car::setY(int y) {
@@ -33,6 +25,17 @@ int Car::getY(){
 
 int Car::getDirection() {
     return this->direction;
+}
+
+
+void Car::drawCar(HDC hdcMem) {
+    SelectObject(hdcMem, brush);
+
+    if(direction == 2 || direction == 4) {
+        Rectangle(hdcMem, x, y, x + height, y + width);
+    }else{
+        Rectangle(hdcMem, x, y, x + width, y + height);
+    }
 }
 
 bool Car::isSpecial() {
