@@ -32,7 +32,6 @@ class Controller {
     bool isSpecialCarMoving = false;
 
 public:
-    void initCars();
     void initTrafficLights();
     Controller();
     void changeTraficLight();

@@ -30,6 +30,7 @@ int x, y;
 HINSTANCE inst;
 
 Car *car;
+int changeTrafficLight = 0;
 Controller *controller;
 
 void drawRoad(HDC hdcMem) {
@@ -160,6 +161,7 @@ LRESULT CALLBACK WinProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
             controller->generatePedestrian();
             controller->movePedestrians();
 
+
             hdc = BeginPaint(hWnd, &ps);
             Paint(hWnd, &ps);
             EndPaint(hWnd, &ps);
@@ -180,6 +182,11 @@ LRESULT CALLBACK WinProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 
 
         case WM_TIMER: {
+            changeTrafficLight++;
+            if(changeTrafficLight == 1000) {
+                changeTrafficLight = 0;
+                controller->changeTraficLight();
+            }
             InvalidateRect(hWnd, &rect, FALSE);
         }
             break;
