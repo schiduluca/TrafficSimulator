@@ -16,7 +16,6 @@ using namespace std;
 #define TIMER_ID 1
 
 static PAINTSTRUCT ps;
-const int BALL_MOVE_DELTA = 2;
 static HDC hdc;
 static RECT rect;
 RECT rc;
@@ -25,13 +24,13 @@ HBITMAP hbmMem, hbmOld;
 HBRUSH hbrBkGnd;
 HFONT hfntOld;
 
-int speed = 0;
 
 int x, y;
 
 HINSTANCE inst;
 
 Car *car;
+int changeTrafficLight = 0;
 Controller *controller;
 
 void drawRoad(HDC hdcMem) {
@@ -70,6 +69,7 @@ static void Paint(HWND hWnd, LPPAINTSTRUCT lpPS) {
     drawRoad(hdcMem);
     controller->drawCars(hdcMem);
     controller->drawTrafficLights(hdcMem);
+    controller->drawPedestrians(hdcMem);
 
     DeleteObject(hbrBkGnd);
     SetBkMode(hdcMem, TRANSPARENT);
@@ -158,6 +158,9 @@ LRESULT CALLBACK WinProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
         case WM_PAINT: {
             controller->generateCar();
             controller->moveCars();
+            controller->generatePedestrian();
+            controller->movePedestrians();
+
 
             hdc = BeginPaint(hWnd, &ps);
             Paint(hWnd, &ps);
@@ -179,6 +182,12 @@ LRESULT CALLBACK WinProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 
 
         case WM_TIMER: {
+            changeTrafficLight++;
+            if(changeTrafficLight == 1000) {
+                changeTrafficLight = 0;
+                controller->changeTraficLight();
+            }
+            
             InvalidateRect(hWnd, &rect, FALSE);
         }
             break;

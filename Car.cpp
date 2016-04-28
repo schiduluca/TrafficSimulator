@@ -35,6 +35,10 @@ int Car::getDirection() {
     return this->direction;
 }
 
+bool Car::isSpecial() {
+    return this->special;
+}
+
 
 
 Car::Car(int x, int y, int width, int height, int direction) {
@@ -44,6 +48,8 @@ Car::Car(int x, int y, int width, int height, int direction) {
     this->height = height;
     this->direction = direction;
     brush = CreateSolidBrush(RGB(0, 0, 0));
+    speed = 3;
+    special = false;
 }
 
 int Car::getWidth() {
@@ -57,4 +63,17 @@ int Car::getHeight() {
 
 void Car::deleteBrush() {
     DeleteObject(brush);
+}
+
+void Car::setSpeed(int speed) {
+    this->speed = speed;
+}
+
+int Car::getSpeed() {
+    return this->speed;
+}
+
+void Car::setColor(int r, int g, int b) {
+    brush = CreateSolidBrush(RGB(r, g, b));
+    (r == 255) ? special = true : special = false;
 }
