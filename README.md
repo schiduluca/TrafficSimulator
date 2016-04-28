@@ -4,7 +4,7 @@
 * Schidu Luca - Core of the application, simulation
 * Schidu Vasile - UI (haven't done yet)
 
-# Task performed
+# Tasks performed
 * Simulate the work of an intersection with 4 traffic lights.
 * User can increase the number of generated cars with mouse wheel
 * 2 crosswalks
@@ -22,3 +22,7 @@
 
 # Git
 I've create a git repository on my profile. I created a branch named controller and worked on it. After all the work was done , I merged it with the master branch. 
+
+
+# Video of the simulation
+https://www.youtube.com/watch?v=jvP2jjkNJWQ&feature=youtu.be
