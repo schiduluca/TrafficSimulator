@@ -71,10 +71,11 @@ Pedestrian::Pedestrian(int x, int y, int width, int height, int direction) {
 }
 
 
-int Pedestrian::getHeight() {
-    return this->height;
-}
-
 void Pedestrian::deleteBrush() {
     DeleteObject(brush);
+}
+
+
+int Pedestrian::getHeight() {
+    return this->height;
 }
