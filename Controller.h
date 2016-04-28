@@ -8,6 +8,7 @@
 
 #include "Car.h"
 #include "TrafficLight.h"
+#include "Pedestrian.h"
 #include <vector>
 using namespace std;
 
@@ -19,12 +20,15 @@ class Controller {
     vector<Car> vecTwo;
     vector<Car> vecThree;
     vector<Car> vecFour;
+    vector<Pedestrian> pedOne;
+    vector<Pedestrian> pedTwo;
     Car *car;
     TrafficLight *trOne;
     TrafficLight *trTwo;
     TrafficLight *trThree;
     TrafficLight *trFour;
     int randomG = 100;
+    bool isSpecialCarMoving = false;
 
 public:
     void initCars();

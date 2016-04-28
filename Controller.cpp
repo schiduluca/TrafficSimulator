@@ -54,6 +54,7 @@ void Controller::generateCar() {
 
                 if(canGenerate){
                     car = new Car(-100, 330, 80, 40, 1);
+                    if(rand() % 10 == 0) car->setColor(255, 0, 0);
                     vecOne.push_back(*car);
 
                 }
@@ -71,6 +72,7 @@ void Controller::generateCar() {
 
                 if(canGenerate){
                     car = new Car(330, -100, 80, 40, 2);
+                    if(rand() % 10 == 0) car->setColor(255, 0, 0);
                     vecTwo.push_back(*car);
                 }
                 cout << vecTwo.size() << " " ;
@@ -88,6 +90,7 @@ void Controller::generateCar() {
 
                 if(canGenerate){
                     car = new Car(820, 230, 80, 40, 3);
+                    if(rand() % 10 == 0) car->setColor(255, 0, 0);
                     vecThree.push_back(*car);
                 }
             }
@@ -104,6 +107,7 @@ void Controller::generateCar() {
                 }
                 if(canGenerate){
                     car = new Car(430, 600, 80, 40, 4);
+                    if(rand() % 10 == 0) car->setColor(255, 0, 0);
                     vecFour.push_back(*car);
                 }
             }
@@ -142,46 +146,63 @@ void Controller::drawTrafficLights(HDC hdcMem) {
 void Controller::moveCars() {
 
         for(int i = 0; i < vecOne.size(); i++) {
+
             if(trafficLight == 1) {
+                if(vecOne[i].isSpecial() && canCarMove(i, vecOne, 1)){
+                    vecOne[i].setX(vecOne[i].getX() + vecOne[i].getSpeed());
+                    isSpecialCarMoving = true;
+                }else
                 if(vecOne[i].getX() <= 300 - 100 || vecOne[i].getX() > 320 ) {
                     if(canCarMove(i, vecOne, 1))
-                        vecOne[i].setX(vecOne[i].getX() + 1);
+                        vecOne[i].setX(vecOne[i].getX() + vecOne[i].getSpeed());
                 }
             }else{
-                vecOne[i].setX(vecOne[i].getX() + 1);
+                vecOne[i].setX(vecOne[i].getX() +  vecOne[i].getSpeed());
             }
         }
 
         for(int i = 0; i < vecTwo.size(); i++) {
             if(trafficLight == 0) {
+                if(vecTwo[i].isSpecial() && canCarMove(i, vecTwo, 2)){
+                    vecTwo[i].setX(vecTwo[i].getY() + vecTwo[i].getSpeed());
+                    isSpecialCarMoving = true;
+                }else
                 if(vecTwo[i].getY() <= 150 - 50 || vecTwo[i].getY() > 170) {
                     if(canCarMove(i, vecTwo, 2))
-                        vecTwo[i].setY(vecTwo[i].getY() + 1);
+                        vecTwo[i].setY(vecTwo[i].getY() +  vecTwo[i].getSpeed());
                 }
             }else{
-                vecTwo[i].setY(vecTwo[i].getY() + 1);
+                vecTwo[i].setY(vecTwo[i].getY() +  vecTwo[i].getSpeed());
             }
         }
 
         for(int i = 0; i < vecThree.size(); i++) {
             if(trafficLight == 1) {
+                if(vecThree[i].isSpecial() && canCarMove(i, vecThree, 3)){
+                    vecThree[i].setX(vecThree[i].getX() -  vecThree[i].getSpeed());
+                    isSpecialCarMoving = true;
+                }else
                 if(vecThree[i].getX() >= 500 + 10 || vecThree[i].getX() < 490) {
                     if(canCarMove(i, vecThree, 3))
-                        vecThree[i].setX(vecThree[i].getX() - 1);
+                        vecThree[i].setX(vecThree[i].getX() -  vecThree[i].getSpeed());
                 }
             }else{
-                vecThree[i].setX(vecThree[i].getX() - 1);
+                vecThree[i].setX(vecThree[i].getX() -  vecThree[i].getSpeed());
             }
         }
 
         for(int i = 0; i < vecFour.size(); i++) {
             if(trafficLight == 0) {
+                if(vecFour[i].isSpecial() && canCarMove(i, vecFour, 4)){
+                    vecFour[i].setY(vecFour[i].getY() - vecFour[i].getSpeed());
+                    isSpecialCarMoving = true;
+                }else
                 if(vecFour[i].getY() >= 400 + 10 || vecFour[i].getY() < 380) {
                     if(canCarMove(i, vecFour, 4))
-                        vecFour[i].setY(vecFour[i].getY() - 1);
+                        vecFour[i].setY(vecFour[i].getY() - vecFour[i].getSpeed());
                 }
             }else{
-                vecFour[i].setY(vecFour[i].getY() - 1);
+                vecFour[i].setY(vecFour[i].getY() - vecFour[i].getSpeed());
             }
         }
  }

@@ -8,7 +8,7 @@
 
 #include <windef.h>
 
-class Pedestrians {
+class Pedestrian {
 private:
     int width;
     int height;
@@ -17,7 +17,7 @@ private:
     int direction;
     HBRUSH brush;
 public:
-    Pedestrians(int x, int y, int width, int height, int direction);
+    Pedestrian(int x, int y, int width, int height, int direction);
     int getWidth();
     int getHeight();
     int getX();
@@ -25,7 +25,7 @@ public:
     void setX(int x);
     void setY(int y);
     int getDirection();
-    void drawCar(HDC hdcMem);
+    void drawPedestrian(HDC hdcMem);
     void deleteBrush();
 };
 

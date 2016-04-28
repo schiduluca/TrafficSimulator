@@ -18,6 +18,9 @@ private:
     int y;
     int direction;
     HBRUSH brush;
+    int speed;
+    bool special;
+
 public:
     Car(int x, int y, int width, int height, int direction);
     int getWidth();
@@ -29,6 +32,10 @@ public:
     int getDirection();
     void drawCar(HDC hdcMem);
     void deleteBrush();
+    int getSpeed();
+    void setSpeed(int speed);
+    void setColor(int r, int g, int b);
+    bool isSpecial();
 
 };
 
