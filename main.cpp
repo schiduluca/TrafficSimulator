@@ -67,9 +67,10 @@ static void Paint(HWND hWnd, LPPAINTSTRUCT lpPS) {
     FillRect(hdcMem, &rc, hbrBkGnd);
 
     drawRoad(hdcMem);
-    controller->drawCars(hdcMem);
     controller->drawTrafficLights(hdcMem);
     controller->drawPedestrians(hdcMem);
+    controller->drawCars(hdcMem);
+    
 
     DeleteObject(hbrBkGnd);
     SetBkMode(hdcMem, TRANSPARENT);
